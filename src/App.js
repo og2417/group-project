@@ -4,10 +4,11 @@ const translate = require('translate');
 
 function App() {
 
-
+  
   setTimeout(() => { 
     const field = document.querySelector(".input");
     const btn = document.querySelector(".submit");
+    // Event for button to translate string when clicked
     btn.addEventListener('click',() =>{
       renderData(field.value, 'es');
     })
@@ -30,9 +31,6 @@ function App() {
       let container = document.querySelector('.output');
       container.innerHTML = html;
   }
-
-  // Event for button to translate string when clicked
-
 
   return (
     <div className="App">

@@ -1,11 +1,17 @@
 import './App.css';
+
 const translate = require('translate');
 
 function App() {
 
-  // input field and submit button
-  let field = document.querySelector('.input');
-  let btn = document.querySelector('.submit');
+
+  setTimeout(() => { 
+    const field = document.querySelector(".input");
+    const btn = document.querySelector(".submit");
+    btn.addEventListener('click',() =>{
+      renderData(field.value, 'es');
+    })
+  }, 1000)
 
   // function doing the translation
   async function translateString(str, translateTo){
@@ -26,14 +32,12 @@ function App() {
   }
 
   // Event for button to translate string when clicked
-  btn.addEventListener('click',() =>{
-    renderData(field.value, 'es');
-  })
+
 
   return (
     <div className="App">
       <textarea className="input"></textarea>
-      <button className="submit">Translate</button>
+      <button className='submit'>Translate</button>
       <div className='output'></div>
     </div>
   );

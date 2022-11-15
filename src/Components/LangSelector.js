@@ -41,7 +41,7 @@ export default function LangSelector(){
                 <label for="language9">INDONESIAN</label>
               </div>
             </div>
-            <div className="selected">Please Select a Language...</div>
+            <div className="selected">Detect Language</div>
     
             <div className="search-box">
               <input type="text" placeholder="Start Typing..." />

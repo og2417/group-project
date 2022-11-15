@@ -5,14 +5,12 @@ import SwitchButton from './Components/SwtichButton';
 import LangOutput from './Components/LangOutput';
 
 const translate = require('translate');
+const LanguageDetect = require('languagedetect');
+const lngDetector = new LanguageDetect();
 
 
 function App() {
-
-  
   setTimeout(() => { 
-    // const field = document.querySelector(".input");
-    // const btn = document.querySelector(".submit");
     const selected = document.querySelector(".selected");
     const optionsContainer = document.querySelector(".options-container");
     const searchBox = document.querySelector(".search-box input");
@@ -115,30 +113,35 @@ function App() {
       });
       
     btn.addEventListener('click',() =>{
-      console.log(langHolder);
-      renderData(beforeText.value,{from: selected.innerHTML}, selected2.innerHTML);
-      if(selected.innerHTML === 'Please Select a Language...' || selected2.innerHTML === 'Please Select a Language...' ){
-        alert("Please Select the Language");
+      if(selected2.innerHTML === 'Please Select a Language...' ){
+        alert("Please select the language that you would like to translate to.");
+
       }
+
+        if(selected.innerHTML === 'Detect Language'){
+          selected.innerHTML = lngDetector.detect(beforeText.value)[0][0].toUpperCase();
+        }
+        renderData(beforeText.value, selected.innerText, selected2.innerText);
+
     })
   }, 1000)
-
+ 
   // function doing the translation
-  async function translateString(str, translateTo){
-    translate.engine = 'google';
-    const foo = await translate(str, translateTo)
+  async function translateString(str,LanguageFrom, translateTo){
+    const foo = await translate(str, {from: LanguageFrom, to: translateTo, engine: "deepl", key: "f7594191-fa4e-6da1-8a81-3a867f4e09e2:fx" });
     return foo
   }
 
   //function rendering the string onto the html
-  async function renderData(str,ToLanguage) {
-    let res = await translateString(str, ToLanguage);
+  async function renderData(str,FromLanguage, ToLanguage) {
+    let res = await translateString(str,FromLanguage,ToLanguage);
     let container = document.querySelector('.afterArea');
     container.value = res;
   }
 
   return (
     <div className="App">
+      <section className='container'>
       <Nav />
       <LangSelector />
       <SwitchButton />
@@ -146,8 +149,10 @@ function App() {
       <textarea className="beforeArea" placeholder="Please enter some text."></textarea>
       <textarea className="afterArea" placeholder="Translation."></textarea>
       <button className="translateButton">Translate</button>
-      {/* <div class="footer"> Abit Jestine, Daniel Jaglen, Matthew Richard, Odejobi Emmanuel, Ziad Essam Ziyada<br>- 2022 -</div> */}
+      <div className="footer"> Abit Jestine, Daniel Jaglen, Matthew Richard, Odejobi Emmanuel, Ziad Essam Ziyada <br/> - 2022 - </div>
+      </section>
     </div>
+    
   );
 }
 

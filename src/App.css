@@ -379,9 +379,8 @@ transform: rotateY(180deg);
 
 .beforeArea {
   resize: none;
-  height: auto;
   width: 30rem;
-  height: 25rem;
+  height: 75%;
   grid-area: beforeArea;
   justify-self: center;
   box-sizing: border-box;
@@ -396,7 +395,7 @@ transform: rotateY(180deg);
 .afterArea {
   resize: none;
   width: 30rem;
-  height: 25rem;
+  height: 75%;
   grid-area: afterArea;
   justify-self: center;
   box-sizing: border-box;
@@ -430,7 +429,6 @@ box-shadow: 1px 5px 15px 0 var(--shadowColor);
 .footer{
 grid-area: footer;
 width: 100%;
-margin-top: 3rem;
 border: 0;
 font-size: small;
 color: var(--secondaryTextColor);

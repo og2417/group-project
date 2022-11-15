@@ -9,6 +9,7 @@
     "@vitalets/google-translate-api": "^8.0.0",
     "crypto-browserify": "^3.12.0",
     "google-translate": "^3.0.0",
+    "languagedetect": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
